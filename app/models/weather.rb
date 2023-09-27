@@ -8,4 +8,12 @@ class Weather
   def self.current_temperature=(value)
     WeatherApi.redis.set :current_temperature, value.to_json
   end
+
+  def self.hourly24_temperature
+    JSON.parse(WeatherApi.redis.get(:hourly24_temperature))
+  end
+
+  def self.hourly24_temperature=(value)
+    WeatherApi.redis.set :hourly24_temperature, value.to_json
+  end
 end
