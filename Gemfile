@@ -6,12 +6,12 @@ ruby "3.2.2"
 gem "bootsnap", require: false
 gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.8"
+gem 'redis', '~> 5.0', '>= 5.0.7'
+gem 'redis-namespace', '~> 1.11'
 gem 'rest-client', '~> 2.1'
 gem "sqlite3", "~> 1.4"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
-# Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
