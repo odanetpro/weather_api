@@ -11,15 +11,8 @@ gem 'redis-namespace', '~> 1.11'
 gem 'rest-client', '~> 2.1'
 gem "sqlite3", "~> 1.4"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem "rack-cors"
+gem 'vcr', '~> 6.2'
+gem 'webmock', '~> 3.19', '>= 3.19.1'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -29,8 +22,4 @@ group :development, :test do
   gem 'rubocop-rspec', '~> 2.24', '>= 2.24.1', require: false
 end
 
-group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-end
-
+group :development do; end

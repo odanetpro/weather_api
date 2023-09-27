@@ -32,4 +32,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore redis dump
 dump.rdb
+
+# Ignore VCR cassettes
+/spec/vcr_cassettes/*
