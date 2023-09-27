@@ -16,7 +16,7 @@ describe 'Health API', type: :request do
     end
 
     it 'returns json with status ok' do
-      expect(json[:status]).to eq 'OK'
+      expect(json['status']).to eq 'OK'
     end
   end
 end
