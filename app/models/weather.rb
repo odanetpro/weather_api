@@ -20,4 +20,8 @@ class Weather
   def self.hourly24_temperature_max
     [hourly24_temperature.max_by { |item| item['Temperature'] }]
   end
+
+  def self.hourly24_temperature_min
+    [hourly24_temperature.min_by { |item| item['Temperature'] }]
+  end
 end

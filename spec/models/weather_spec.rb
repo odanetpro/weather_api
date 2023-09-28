@@ -56,12 +56,27 @@ describe Weather do
       allow(WeatherApi.redis).to receive(:set).with(:hourly24_temperature, anything)
     end
 
-    it 'return max temperature' do
+    it 'returns max temperature' do
       result = described_class.hourly24_temperature_max
 
       max_temperature = sample_hourly24_temp_data.max_by { |item| item['Temperature'] }
 
       expect(result[0]).to eq(max_temperature)
+    end
+  end
+
+  describe 'hourly24_temperature_min' do
+    before do
+      allow(WeatherApi.redis).to receive(:get).with(:hourly24_temperature).and_return(sample_hourly24_temp_data.to_json)
+      allow(WeatherApi.redis).to receive(:set).with(:hourly24_temperature, anything)
+    end
+
+    it 'returns min temperature' do
+      result = described_class.hourly24_temperature_min
+
+      min_temperature = sample_hourly24_temp_data.min_by { |item| item['Temperature'] }
+
+      expect(result[0]).to eq(min_temperature)
     end
   end
 end
