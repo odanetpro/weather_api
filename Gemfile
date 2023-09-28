@@ -9,6 +9,7 @@ gem "rails", "~> 7.0.8"
 gem 'redis', '~> 5.0', '>= 5.0.7'
 gem 'redis-namespace', '~> 1.11'
 gem 'rest-client', '~> 2.1'
+gem 'rufus-scheduler', '~> 3.9', '>= 3.9.1'
 gem "sqlite3", "~> 1.4"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'vcr', '~> 6.2'
