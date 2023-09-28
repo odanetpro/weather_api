@@ -16,4 +16,8 @@ class Weather
   def self.hourly24_temperature=(value)
     WeatherApi.redis.set :hourly24_temperature, value.to_json
   end
+
+  def self.hourly24_temperature_max
+    [hourly24_temperature.max_by { |item| item['Temperature'] }]
+  end
 end
