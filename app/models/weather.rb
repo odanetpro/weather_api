@@ -24,4 +24,10 @@ class Weather
   def self.hourly24_temperature_min
     [hourly24_temperature.min_by { |item| item['Temperature'] }]
   end
+
+  def self.hourly24_temperature_avg
+    temperatures = hourly24_temperature.pluck('Temperature')
+    avg = (temperatures.sum / temperatures.size).ceil(1)
+    [{ 'Temperature' => avg }]
+  end
 end

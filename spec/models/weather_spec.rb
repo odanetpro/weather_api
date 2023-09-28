@@ -79,4 +79,20 @@ describe Weather do
       expect(result[0]).to eq(min_temperature)
     end
   end
+
+  describe 'hourly24_temperature_avg' do
+    before do
+      allow(WeatherApi.redis).to receive(:get).with(:hourly24_temperature).and_return(sample_hourly24_temp_data.to_json)
+      allow(WeatherApi.redis).to receive(:set).with(:hourly24_temperature, anything)
+    end
+
+    it 'returns average temperature' do
+      result = described_class.hourly24_temperature_avg
+
+      temperatures = result.pluck('Temperature')
+      avg_temperature = (temperatures.sum / temperatures.size).ceil(1)
+
+      expect(result[0]['Temperature']).to eq(avg_temperature)
+    end
+  end
 end
