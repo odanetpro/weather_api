@@ -13,5 +13,9 @@ module V1
     def historical_max
       render json: Weather.hourly24_temperature_max, status: :ok
     end
+
+    def historical_min
+      render json: Weather.hourly24_temperature_min, status: :ok
+    end
   end
 end
