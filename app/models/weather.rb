@@ -28,6 +28,14 @@ class Weather
   def self.hourly24_temperature_avg
     temperatures = hourly24_temperature.pluck('Temperature')
     avg = (temperatures.sum / temperatures.size).ceil(1)
+
     [{ 'Temperature' => avg }]
+  end
+
+  def self.by_time(timestamp)
+    hourly24_temperature.select do |item|
+      # within one hour
+      Time.zone.at(timestamp).change(min: 0) == Time.zone.at(item['EpochTime']).change(min: 0)
+    end
   end
 end

@@ -95,4 +95,27 @@ describe Weather do
       expect(result[0]['Temperature']).to eq(avg_temperature)
     end
   end
+
+  describe 'by_time' do
+    before do
+      allow(WeatherApi.redis).to receive(:get).with(:hourly24_temperature).and_return(sample_hourly24_temp_data.to_json)
+      allow(WeatherApi.redis).to receive(:set).with(:hourly24_temperature, anything)
+    end
+
+    it 'returns the nearest by time temperature' do
+      sample_timestamp = Time.current.to_i + (23 * 3600)
+
+      result = described_class.by_time(sample_timestamp)
+
+      expect(result).to eq([sample_hourly24_temp_data[23]])
+    end
+
+    it 'the nearest time temperature was not found' do
+      sample_timestamp = Time.current.to_i - 3600
+
+      result = described_class.by_time(sample_timestamp)
+
+      expect(result).to be_empty
+    end
+  end
 end
