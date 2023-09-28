@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
       scope :historical do
         get '/', to: 'weather#historical'
+        get 'max', to: 'weather#historical_max'
       end
     end
   end
