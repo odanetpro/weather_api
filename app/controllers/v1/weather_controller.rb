@@ -5,5 +5,9 @@ module V1
     def current
       render json: Weather.current_temperature, status: :ok
     end
+
+    def historical
+      render json: Weather.hourly24_temperature, status: :ok
+    end
   end
 end

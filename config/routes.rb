@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
     scope :weather do
       get :current, to: 'weather#current'
+
+      scope :historical do
+        get '/', to: 'weather#historical'
+      end
     end
   end
 end
