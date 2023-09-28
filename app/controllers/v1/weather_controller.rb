@@ -17,5 +17,9 @@ module V1
     def historical_min
       render json: Weather.hourly24_temperature_min, status: :ok
     end
+
+    def historical_avg
+      render json: Weather.hourly24_temperature_avg, status: :ok
+    end
   end
 end

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         get '/', to: 'weather#historical'
         get 'max', to: 'weather#historical_max'
         get 'min', to: 'weather#historical_min'
+        get 'avg', to: 'weather#historical_avg'
       end
     end
   end
