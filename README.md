@@ -2,7 +2,7 @@
 
 This is an API for weather statistics.
 
-Gets statistics from accuweather.com (every hour the temperature for the last 24 hours, every 15 minutes the current temperature ) and stores it locally and gives it in different slices.
+Gets statistics from accuweather.com (every hour the temperature for the last 24 hours, every 15 minutes the current temperature ), stores it locally and gives it in different slices.
 
 The API contains the following endpoints:
 
