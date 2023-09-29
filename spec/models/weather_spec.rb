@@ -111,7 +111,7 @@ describe Weather do
     end
 
     it 'the nearest time temperature was not found' do
-      sample_timestamp = Time.current.to_i - 3600
+      sample_timestamp = Time.current.to_i - 3601
 
       result = described_class.by_time(sample_timestamp)
 

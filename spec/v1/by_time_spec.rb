@@ -31,7 +31,7 @@ describe 'Weather API', type: :request do
     end
 
     describe 'not found' do
-      let(:distant_time) { Time.current.to_i - 3600 }
+      let(:distant_time) { Time.current.to_i - 3601 }
 
       before { get "/v1/weather/by_time?timestamp=#{distant_time}", headers: request_headers }
 

@@ -33,9 +33,11 @@ class Weather
   end
 
   def self.by_time(timestamp)
-    hourly24_temperature.select do |item|
-      # within one hour
-      Time.zone.at(timestamp).change(min: 0) == Time.zone.at(item['EpochTime']).change(min: 0)
-    end
+    # nearest within one hour
+    [
+      hourly24_temperature
+        .select { |item| (timestamp - item['EpochTime'].to_i).abs <= 3600 }
+        .min_by { |item| (timestamp - item['EpochTime'].to_i).abs }
+    ].compact
   end
 end
