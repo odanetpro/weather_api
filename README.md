@@ -25,3 +25,13 @@ Technologies and dependencies:
 Tests:
 
 * Rspec, VCR
+
+Running the app
+```
+docker compose up -d
+```
+
+Running tests
+```
+docker compose run --rm api bundle exec rspec && docker compose down
+```

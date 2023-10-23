@@ -1,0 +1,56 @@
+version: '3.5'
+
+services:
+  redis:
+    image: redis:7.2.2-alpine
+    container_name: weather-api-redis
+    restart: unless-stopped
+    command: redis-server
+    ports:
+      - '6379:6379'
+    networks:
+      - weathernet
+    volumes:
+      - 'redis:/data'
+
+  sidekiq:
+    build: .
+    container_name: weather-api-sidekiq
+    depends_on:
+      - redis
+    restart: unless-stopped
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - .:/app
+      - bundle_cache:/bundle
+    networks:
+      - weathernet
+    command: bundle exec sidekiq
+
+  api:
+    build: .
+    container_name: weather-api-rails
+    depends_on:
+      - redis
+      - sidekiq
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - bundle_cache:/bundle
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    networks:
+      - weathernet
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+
+volumes:
+  bundle_cache:
+  redis:
+
+networks:
+  weathernet:
+    name: weathernet
+    driver: bridge
